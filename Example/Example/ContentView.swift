@@ -106,6 +106,34 @@ struct ContentView: View {
                             duration: 5,
                         )
                     }
+                    
+                    Button("移除缩放动画，自定义全屏 Alert") {
+                        Y_Toast.show(
+                            customContent: {
+                                ZStack {
+                                    // 半透明背景
+                                    Color.black.opacity(0.25)
+                                        .edgesIgnoringSafeArea(.all)
+                                    
+                                    VStack {
+                                        Text("自定义Toast")
+                                            .font(.headline)
+                                            .foregroundColor(.black)
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                            .font(.title)
+                                        Button("点击移除Toast") {
+                                            Y_Toast.dismiss()
+                                        }
+                                    }
+                                    .padding()
+                                    .background(Color.gray)
+                                    .cornerRadius(10)
+                                }
+                            },
+                            disableTransition: true,
+                        )
+                    }
 
                     Button("外部自由封装 Alert") {
                         Y_Toast.showMyAlert(date: $date)

@@ -76,6 +76,23 @@ public struct Y_ToastView: View {
     }
 }
 
+// MARK: - Y_ToastView 是否使用 transition 属性
+extension Y_ToastView {
+    @ViewBuilder
+    func disableTransition(_ disabled: Bool) -> some View {
+        if disabled {
+            self
+        } else {
+            self.transition(
+                .asymmetric(
+                    insertion: .opacity.combined(with: .scale(scale: 0.8)),
+                    removal: .opacity.combined(with: .scale(scale: 0.9))
+                )
+            )
+        }
+    }
+}
+
 // MARK: - Toast覆盖层视图
 public struct Y_ToastOverlayView: View {
     @StateObject private var manager = Y_ToastManager.shared
@@ -101,12 +118,7 @@ public struct Y_ToastOverlayView: View {
             if manager.isPresenting,
                let config = manager.currentConfig {
                 Y_ToastView(config: config)
-                    .transition(
-                        .asymmetric(
-                            insertion: .opacity.combined(with: .scale(scale: 0.8)),
-                            removal: .opacity.combined(with: .scale(scale: 0.9))
-                        )
-                    )
+                    .disableTransition(config.disableTransition)
                     .onTapGesture {
                         manager.handleTap()
                     }

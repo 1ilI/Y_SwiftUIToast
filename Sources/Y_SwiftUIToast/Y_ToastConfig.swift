@@ -40,12 +40,16 @@ public struct Y_ToastConfig: Equatable {
     /// 自动消失时间（秒），0.0表示不自动消失
     public let duration: TimeInterval
     
+    /// 取消转场动画，默认 false，不取消
+    public let disableTransition: Bool
+    
     /// 传统图像的初始化方法
     public init(
         text: String,
         image: Y_ToastImageType? = nil,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         self.text = text
@@ -54,6 +58,7 @@ public struct Y_ToastConfig: Equatable {
         self.customContent = nil
         self.isFullScreen = isFullScreen
         self.canTapRemove = canTapRemove
+        self.disableTransition = disableTransition
         self.duration = duration
     }
     
@@ -63,6 +68,7 @@ public struct Y_ToastConfig: Equatable {
         @ViewBuilder customImage: @escaping () -> CustomImage,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         self.text = text
@@ -71,6 +77,7 @@ public struct Y_ToastConfig: Equatable {
         self.customContent = nil
         self.isFullScreen = isFullScreen
         self.canTapRemove = canTapRemove
+        self.disableTransition = disableTransition
         self.duration = duration
     }
     
@@ -79,6 +86,7 @@ public struct Y_ToastConfig: Equatable {
         @ViewBuilder customContent: @escaping () -> CustomContent,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         self.text = nil
@@ -87,6 +95,7 @@ public struct Y_ToastConfig: Equatable {
         self.customContent = customContent
         self.isFullScreen = isFullScreen
         self.canTapRemove = canTapRemove
+        self.disableTransition = disableTransition
         self.duration = duration
     }
     
@@ -96,6 +105,7 @@ public struct Y_ToastConfig: Equatable {
                lhs.image == rhs.image &&
                lhs.isFullScreen == rhs.isFullScreen &&
                lhs.canTapRemove == rhs.canTapRemove &&
+               lhs.disableTransition == rhs.disableTransition &&
                lhs.duration == rhs.duration &&
                // customImage和customContent无法比较，只检查是否都为nil或都不为nil
                (lhs.customImage == nil) == (rhs.customImage == nil) &&

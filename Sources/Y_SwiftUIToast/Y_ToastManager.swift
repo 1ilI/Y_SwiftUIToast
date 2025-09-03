@@ -31,6 +31,7 @@ public class Y_ToastManager: ObservableObject {
         image: Y_ToastImageType? = nil,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         if text.isEmpty { return }
@@ -46,6 +47,7 @@ public class Y_ToastManager: ObservableObject {
             image: image,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
 
@@ -59,6 +61,7 @@ public class Y_ToastManager: ObservableObject {
         @ViewBuilder customImage: @escaping () -> CustomImage,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         if text.isEmpty { return }
@@ -74,6 +77,7 @@ public class Y_ToastManager: ObservableObject {
             customImage: customImage,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
 
@@ -86,6 +90,7 @@ public class Y_ToastManager: ObservableObject {
         @ViewBuilder customContent: @escaping () -> CustomContent,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         debugLog("显示自定义内容Toast")
@@ -99,6 +104,7 @@ public class Y_ToastManager: ObservableObject {
             customContent: customContent,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
 

@@ -20,12 +20,14 @@ public struct Y_Toast {
     ///   - image: 文字上方的图片/控件（可选）
     ///   - isFullScreen: 是否显示全屏透明遮盖层，默认false
     ///   - canTapRemove: 是否允许点击移除Toast，默认false
+    ///   - disableTransition: 取消转场动画，默认 false，不取消
     ///   - duration: 自动消失时间（秒），默认0.0表示不自动消失
     public static func show(
         text: String,
         image: Y_ToastImageType? = nil,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         Y_ToastManager.shared.show(
@@ -33,6 +35,7 @@ public struct Y_Toast {
             image: image,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
     }
@@ -44,12 +47,14 @@ public struct Y_Toast {
     ///   - customImage: 自定义文字上方视图构建器
     ///   - isFullScreen: 是否显示全屏透明遮盖层，默认false
     ///   - canTapRemove: 是否允许点击移除Toast，默认false
+    ///   - disableTransition: 取消转场动画，默认 false，不取消
     ///   - duration: 自动消失时间（秒），默认0.0表示不自动消失
     public static func show<CustomImage: View>(
         text: String,
         @ViewBuilder customImage: @escaping () -> CustomImage,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         Y_ToastManager.shared.show(
@@ -57,6 +62,7 @@ public struct Y_Toast {
             customImage: customImage,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
     }
@@ -67,17 +73,20 @@ public struct Y_Toast {
     ///   - customContent: 完全自定义内容视图构建器
     ///   - isFullScreen: 是否显示全屏透明遮盖层，默认false
     ///   - canTapRemove: 是否允许点击移除Toast，默认false
+    ///   - disableTransition: 取消转场动画，默认 false，不取消
     ///   - duration: 自动消失时间（秒），默认0.0表示不自动消失
     public static func show<CustomContent: View>(
         @ViewBuilder customContent: @escaping () -> CustomContent,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         Y_ToastManager.shared.show(
             customContent: customContent,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
     }
@@ -90,12 +99,14 @@ public struct Y_Toast {
         _ text: String,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 2.0
     ) {
         show(
             text: text,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
     }
@@ -109,6 +120,7 @@ public struct Y_Toast {
         image: Y_ToastImageType,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 2.0
     ) {
         show(
@@ -116,6 +128,7 @@ public struct Y_Toast {
             image: image,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
     }
@@ -129,6 +142,7 @@ public struct Y_Toast {
         image: Y_ToastImageType? = nil,
         isFullScreen: Bool = true,
         canTapRemove: Bool = true,
+        disableTransition: Bool = false,
         duration: TimeInterval = 2.0,
     ) {
         show(
@@ -136,6 +150,7 @@ public struct Y_Toast {
             image: image,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
     }
@@ -147,12 +162,14 @@ public struct Y_Toast {
     public static func showFullScreen(
         _ text: String,
         canTapRemove: Bool = true,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         show(
             text: text,
             isFullScreen: true,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration,
         )
     }
@@ -165,12 +182,14 @@ public struct Y_Toast {
         _ text: String,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval,
     ) {
         show(
             text: text,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration
         )
     }
@@ -181,6 +200,7 @@ public struct Y_Toast {
         _ text: String,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 2.0
     ) {
         show(
@@ -188,6 +208,7 @@ public struct Y_Toast {
             image: .systemIcon("checkmark.circle.fill"),
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration,
         )
     }
@@ -198,6 +219,7 @@ public struct Y_Toast {
         _ text: String,
         isFullScreen: Bool = false,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 2.0
     ) {
         show(
@@ -205,6 +227,7 @@ public struct Y_Toast {
             image: .systemIcon("xmark.circle.fill"),
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration,
         )
     }
@@ -215,6 +238,7 @@ public struct Y_Toast {
         _ text: String,
         isFullScreen: Bool = true,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 2.0
     ) {
         show(
@@ -222,6 +246,7 @@ public struct Y_Toast {
             image: .systemIcon("exclamationmark.triangle.fill"),
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration,
         )
     }
@@ -232,6 +257,7 @@ public struct Y_Toast {
         _ text: String = "加载中...",
         isFullScreen: Bool = true,
         canTapRemove: Bool = false,
+        disableTransition: Bool = false,
         duration: TimeInterval = 0.0
     ) {
         show(
@@ -239,6 +265,7 @@ public struct Y_Toast {
             image: .activityIndicator,
             isFullScreen: isFullScreen,
             canTapRemove: canTapRemove,
+            disableTransition: disableTransition,
             duration: duration,
         )
     }

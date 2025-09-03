@@ -27,12 +27,14 @@ struct ExampleApp: App {
 ///   - image: 文字上方的图片/控件（可选）
 ///   - isFullScreen: 是否显示全屏透明遮盖层，默认false
 ///   - canTapRemove: 是否允许点击移除Toast，默认false
+///   - disableTransition: 取消转场动画，默认 false，不取消
 ///   - duration: 自动消失时间（秒），默认0.0表示不自动消失
 public static func show(
     text: String,
     image: Y_ToastImageType? = nil,
     isFullScreen: Bool = false,
     canTapRemove: Bool = false,
+    disableTransition: Bool = false,
     duration: TimeInterval = 0.0
 )
 
@@ -63,12 +65,14 @@ Y_Toast.show(text: string, image: .activityIndicator)
 ///   - customImage: 自定义文字上方视图构建器
 ///   - isFullScreen: 是否显示全屏透明遮盖层，默认 false
 ///   - canTapRemove: 是否允许点击移除Toast，默认 false
+///   - disableTransition: 取消转场动画，默认 false，不取消
 ///   - duration: 自动消失时间（秒），默认 0.0 表示不自动消失
 public static func show<CustomImage: View>(
     text: String,
     @ViewBuilder customImage: @escaping () -> CustomImage,
     isFullScreen: Bool = false,
     canTapRemove: Bool = false,
+    disableTransition: Bool = false,
     duration: TimeInterval = 0.0
 ) 
 
@@ -97,11 +101,13 @@ Y_Toast.show(
 ///   - customContent: 完全自定义内容视图构建器
 ///   - isFullScreen: 是否显示全屏透明遮盖层，默认 false
 ///   - canTapRemove: 是否允许点击移除Toast，默认 false
+///   - disableTransition: 取消转场动画，默认 false，不取消
 ///   - duration: 自动消失时间（秒），默认 0. 表示不自动消失
 public static func show<CustomContent: View>(
     @ViewBuilder customContent: @escaping () -> CustomContent,
     isFullScreen: Bool = false,
     canTapRemove: Bool = false,
+    disableTransition: Bool = false,
     duration: TimeInterval = 0.0
 ) 
 
